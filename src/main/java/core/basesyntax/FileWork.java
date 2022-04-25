@@ -4,7 +4,7 @@ import java.io.FileInputStream;
 import java.util.Arrays;
 
 public class FileWork {
-    private final String constant = "w";
+    private static final String FIRST_LETTER_W = "w";
 
     public String[] readFromFile(String fileName) {
         StringBuilder builder = new StringBuilder();
@@ -15,12 +15,14 @@ public class FileWork {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("Exception catched during the file reading.");
+            return new String[0];
         }
         String charArray = builder.toString().toLowerCase().trim();
         builder.delete(0, builder.length());
         String[] newArray = charArray.split(" ");
         for (String wLetter : newArray) {
-            if (wLetter.startsWith(constant)) {
+            if (wLetter.startsWith(FIRST_LETTER_W)) {
                 builder.append(wLetter.replaceAll("\\W", "")).append(" ");
             }
         }
